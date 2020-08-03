@@ -11,7 +11,7 @@ import (
 
 func main() {
 	sh := shell.NewLocalShell()
-	cid, err := sh.Add(strings.NewReader("hello world!"))
+	cid, err := sh.Add(strings.NewReader("Welcome to Devops world!"))
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error: ", err)
 		os.Exit(1)
