@@ -6,8 +6,6 @@ WORKDIR /app
 RUN go get -d -v github.com/ipfs/go-ipfs-api
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 
-FROM alpine:latest
-RUN apk --no-cache add ca-certificates
-WORKDIR /root/
-COPY --from=builder /app .
-CMD ["./main"]
+FROM ipfs/go-ipfs:latest
+WORKDIR /export
+COPY --from=builder /app/ .
