@@ -38,3 +38,7 @@ stages:
     - script: |
         cid=$(docker run -d --name ipfs-node -p 8080:8080 -p 4001:4001 -p 127.0.0.1:5001:5001 3939/go-app:$(tag))
         echo $cid
+        output=$(docker exec $cid ipfs add /export/main)
+        echo $output
+        
+        
