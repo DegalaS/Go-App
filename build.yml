@@ -64,6 +64,7 @@ stages:
         EOF
         
     - script: |
+        pip install shyaml -y
         param1=$(cat vars.yml | shyaml get-value param1)
         echo $param1 > param1.txt
         
