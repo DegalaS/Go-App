@@ -2,6 +2,10 @@
 # Build a Docker image 
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
+
+trigger:
+- master
+
 parameters:
 - name: param1
   type: string
@@ -14,10 +18,6 @@ parameters:
 - name: param3
   type: string
   default: value3
-
-
-trigger:
-- master
 
 resources:
 - repo: self
