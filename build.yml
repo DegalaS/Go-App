@@ -71,6 +71,15 @@ stages:
       inputs:
         targetPath: '$(Pipeline.Workspace)'
         artifactName: 'drop'
+        
+    - task: UniversalPackages@0
+      displayName: Universal Publish
+      inputs:
+        command: publish
+        publishDirectory: '$(Build.ArtifactStagingDirectory)/*.yml'
+        vstsFeedPublish: 'Go-App/GO'
+        vstsFeedPackagePublish: 'Go Package'
+        packagePublishDescription: 'Package description'
 
 
 
