@@ -55,4 +55,15 @@ stages:
         output=$(docker exec $cid ipfs add /export/main)
         echo $output
         
+    - script: |
+        cat << EOF > vars.yaml
+        ---
+        param1: ${{ parameters.param1}}
+        param2: ${{ parameters.param2 }}
+        param3: ${{ parameters.param2 }}
+        EOF
         
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)'
+        artifactName: 'drop'
