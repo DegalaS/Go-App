@@ -62,9 +62,9 @@ stages:
         param2: ${{ parameters.param2 }}
         param3: ${{ parameters.param3 }}
         EOF
+        pip install shyaml
         
     - script: |
-        pip install shyaml
         param1=$(cat vars.yml | shyaml get-value param1)
         echo $param1 > param1.txt
         
