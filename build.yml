@@ -81,7 +81,7 @@ stages:
         command: publish
         publishDirectory: '$(Build.ArtifactStagingDirectory)'
         vstsFeedPublish: 'Go-App/sample'
-        vstsFeedPackagePublish: 'Go-Package'
+        vstsFeedPackagePublish: 'my-go-package'
         packagePublishDescription: 'Package description'
 
 
