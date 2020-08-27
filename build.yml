@@ -64,8 +64,8 @@ stages:
         EOF
         
     - script: |
-        id=$(cat vars.yml | shyaml get-value param1)
-        echo $id > id
+        param1=$(cat vars.yml | shyaml get-value param1)
+        echo $param1 > param1.txt
         
     - task: PublishPipelineArtifact@1
       inputs:
