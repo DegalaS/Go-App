@@ -34,33 +34,33 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - task: Docker@2
-      displayName: Login to Docker Hub
-      inputs:
-        command: login
-        containerRegistry: docker-hub-connection
-        
-    - task: Docker@2
-      displayName: Build and Push
-      inputs:
-        command: buildAndPush
-        dockerFile: '**/Dockerfile'
-        repository: 3939/go-app
-        tags: |
-          $(tag)
-          
-    - script: |
-        cid=$(docker run -d --name ipfs-node -p 8080:8080 -p 4001:4001 -p 127.0.0.1:5001:5001 3939/go-app:$(tag))
-        echo $cid
-        output=$(docker exec $cid ipfs add /export/main)
-        echo $output
+#    - task: Docker@2
+#      displayName: Login to Docker Hub
+#      inputs:
+#        command: login
+#        containerRegistry: docker-hub-connection
+#        
+#    - task: Docker@2
+#      displayName: Build and Push
+#      inputs:
+#        command: buildAndPush
+#        dockerFile: '**/Dockerfile'
+#        repository: 3939/go-app
+#        tags: |
+#          $(tag)
+#          
+#    - script: |
+#        cid=$(docker run -d --name ipfs-node -p 8080:8080 -p 4001:4001 -p 127.0.0.1:5001:5001 3939/go-app:$(tag))
+#        echo $cid
+#        output=$(docker exec $cid ipfs add /export/main)
+#        echo $output
         
     - script: |
         cat << EOF > vars.yaml
         ---
-        param1: ${{ parameters.param1}}
+        param1: ${{ parameters.param1 }}
         param2: ${{ parameters.param2 }}
-        param3: ${{ parameters.param2 }}
+        param3: ${{ parameters.param3 }}
         EOF
         
     - task: PublishPipelineArtifact@1
