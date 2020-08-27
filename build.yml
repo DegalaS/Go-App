@@ -2,6 +2,20 @@
 # Build a Docker image 
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
+parameters:
+- name: param1
+  type: string
+  default: value1
+  
+- name: param2
+  type: string
+  default: value2
+  
+- name: param3
+  type: string
+  default: value3
+
+
 trigger:
 - master
 
