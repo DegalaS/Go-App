@@ -67,18 +67,21 @@ stages:
         param1=$(cat vars.yml | shyaml get-value param1)
         echo $param1 > param1.txt
         
-    - task: PublishPipelineArtifact@1
+    - task: CopyFiles@2
+      displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
       inputs:
-        targetPath: '$(Pipeline.Workspace)'
-        artifactName: 'drop'
+        SourceFolder: '$(Build.SourcesDirectory)'
+        Contents: |
+          **/*.yml
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
         
     - task: UniversalPackages@0
       displayName: Universal Publish
       inputs:
         command: publish
-        publishDirectory: '$(Build.ArtifactStagingDirectory)/*.yml'
+        publishDirectory: '$(Build.ArtifactStagingDirectory)'
         vstsFeedPublish: 'Go-App/sample'
-        vstsFeedPackagePublish: 'Go Package'
+        vstsFeedPackagePublish: 'Go-Package'
         packagePublishDescription: 'Package description'
 
 
