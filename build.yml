@@ -56,14 +56,24 @@ stages:
 #        echo $output
         
     - script: |
-        cat << EOF > vars.yaml
+        cat << EOF > vars.yml
         ---
         param1: ${{ parameters.param1 }}
         param2: ${{ parameters.param2 }}
         param3: ${{ parameters.param3 }}
         EOF
         
+    - script: |
+        id=$(cat vars.yml | shyaml get-value param1)
+        echo $id > id
+        
     - task: PublishPipelineArtifact@1
       inputs:
         targetPath: '$(Pipeline.Workspace)'
         artifactName: 'drop'
+
+
+
+        
+        
+        
